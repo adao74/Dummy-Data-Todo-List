@@ -36,13 +36,15 @@ const logTodos = () => {
 
 const populateTodos = () => {
 
-    const newListElement = document.createElement("li")
-    const newTextNode = document.createTextNode(arrayOfTodos[0].title)
-    newListElement.appendChild(newTextNode)
+    for (let i = 0; i < arrayOfTodos.length; i++) {
+        const newListElement = document.createElement("li")
+        const newTextNode = document.createTextNode(arrayOfTodos[i].title)
+        newListElement.appendChild(newTextNode)
 
-    const olElement = document.getElementById("todo-list")
-    // Note that the newListElement (li) will render with a number b/c the html uses an ORDERED list
-    // IF you had used an UNORDERED list instead in the html file, the newListElement (li) will render with a bullet point! 
-    olElement.appendChild(newListElement)
-
+        const olElement = document.getElementById("todo-list")
+        // Note that the newListElement (li) will render with a number b/c the html uses an ORDERED list
+        // IF you had used an UNORDERED list instead in the html file, the newListElement (li) will render with a bullet point! 
+        olElement.appendChild(newListElement)
+    }
+    
 }
