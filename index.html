@@ -7,9 +7,16 @@
     <script src="index.js"></script>
 </head>
 <body>
-    <button onclick="fetchTodos()">Fetch Todos</button>
-    <button onclick="logTodos()">Log Todos</button>
-    <button onclick="populateTodos()">Populate Todos</button>
+    <button onclick="fetchTodos()">Fetch Todos</button><br />
+    <button onclick="logTodos()">Log all Todos</button><br />
+    <button onclick="allTodos(event)">Populate all Todos</button><br /><br />
+    <form>
+        <label for="user-id">User ID</label>
+        <input type="number" name="id" id="user-id" min="1" max="10" value="" onkeyup="storeUserId(this.value)"><br /><br />
+    </form>
+    <button type="submit" onclick="userOnly(event)">Populate User Todos</button><br />
+    <button type="submit" onclick="completedOnly(event)">Populate Completed User Todos</button><br />
+    <button type="submit" onclick="uncompletedOnly(event)">Populate Uncompleted User Todos</button>
     <ol id="todo-list">
     </ol>
 </body>
