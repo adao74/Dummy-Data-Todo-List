@@ -44,7 +44,7 @@ const storeUserId = (val) => {
 const allTodos = (event) => {
     event.preventDefault()
 
-    populateTodos(arrayOfTodos)
+    populateTodos(arrayOfTodos, null, null)
 }
 
 const userOnly = (event) => {
@@ -52,7 +52,7 @@ const userOnly = (event) => {
 
     arrayUserOnly = arrayOfTodos.filter( (a) => a.userId == userIdInput )
 
-    populateTodos(arrayUserOnly)
+    populateTodos(arrayUserOnly, null, null)
 }
 
 const completedOnly = (event) => {
@@ -60,7 +60,7 @@ const completedOnly = (event) => {
 
     arrayCompleted = arrayUserOnly.filter( (a) => a.completed === true )
 
-    populateTodos(arrayCompleted)
+    populateTodos(null, arrayCompleted, null)
 }
 
 const uncompletedOnly = (event) => {
@@ -68,29 +68,67 @@ const uncompletedOnly = (event) => {
 
     arrayUncompleted = arrayUserOnly.filter( (a) => a.completed === false )
 
-    populateTodos(arrayUncompleted)
+    populateTodos(null, null, arrayUncompleted)
+}
+
+const selected = (val) => {
+    userIdInput = val
+    arrayUserOnly = arrayOfTodos.filter( (a) => a.userId == userIdInput )
+    arrayCompleted = arrayUserOnly.filter( (a) => a.completed === true )
+    arrayUncompleted = arrayUserOnly.filter( (a) => a.completed === false )
+
+    populateTodos(arrayUserOnly, arrayCompleted, arrayUncompleted)
 }
 
 const removeAllChildNodes = (parent) => {
     while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
+        parent.removeChild(parent.firstChild)
     }
 }
 
 
-const populateTodos = (arr) => {
+const populateTodos = (allOrUser, completed, uncompleted) => {
 
     const olElement = document.getElementById("todo-list")
-    removeAllChildNodes(olElement);
+    const completedElement = document.getElementById("completed-list")
+    const uncompletedElement = document.getElementById("uncompleted-list")
 
-    for (let i = 0; i < arr.length; i++) {
-        const newListElement = document.createElement("li")
-        const newTextNode = document.createTextNode(arr[i].title)
-        newListElement.appendChild(newTextNode)
+    removeAllChildNodes(olElement)
+    removeAllChildNodes(completedElement)
+    removeAllChildNodes(uncompletedElement)
 
-        // Note that the newListElement (li) will render with a number b/c the html uses an ORDERED list
-        // IF you had used an UNORDERED list instead in the html file, the newListElement (li) will render with a bullet point! 
-        olElement.appendChild(newListElement)
-    }
+    if (allOrUser) {
+
+        for (let i = 0; i < allOrUser.length; i++) {
+            const newListElement = document.createElement("li")
+            const newTextNode = document.createTextNode(allOrUser[i].title)
+            newListElement.appendChild(newTextNode)
+
+            // Note that the newListElement (li) will render with a number b/c the html uses an ORDERED list
+            // IF you had used an UNORDERED list instead in the html file, the newListElement (li) will render with a bullet point! 
+            olElement.appendChild(newListElement)
+        }
+    } 
     
+    if (completed) {
+
+        for (let i = 0; i < completed.length; i++) {
+            const newListElement = document.createElement("li")
+            const newTextNode = document.createTextNode(completed[i].title)
+            newListElement.appendChild(newTextNode)
+
+            completedElement.appendChild(newListElement)
+        }
+    }
+
+    if (uncompleted) {
+
+        for (let i = 0; i < uncompleted.length; i++) {
+            const newListElement = document.createElement("li")
+            const newTextNode = document.createTextNode(uncompleted[i].title)
+            newListElement.appendChild(newTextNode)
+
+            uncompletedElement.appendChild(newListElement)
+        }
+    }
 }
