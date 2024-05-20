@@ -7,10 +7,68 @@
     <script src="index.js"></script>
 </head>
 <body>
-    <button onclick="fetchTodos()">Fetch Todos</button>
-    <button onclick="logTodos()">Log Todos</button>
-    <button onclick="populateTodos()">Populate Todos</button>
+    <button onclick="fetchTodos()">Fetch Todos</button><br />
+    <button onclick="logTodos()">Log all Todos</button><br />
+    <button onclick="allTodos(event)">Populate all Todos</button><br /><br />
+    <form>
+        <label for="user-id">User ID</label>
+        <input type="number" name="id" id="user-id" min="1" max="10" value="" onkeyup="storeUserId(this.value)"><br /><br />
+    </form>
+    <button type="submit" onclick="userOnly(event)">Populate User Todos</button><br />
+    <button type="submit" onclick="completedOnly(event)">Populate Completed User Todos</button><br />
+    <button type="submit" onclick="uncompletedOnly(event)">Populate Uncompleted User Todos</button><br /><br />
+
+    <div>
+        Select a user ID
+        <div>
+          <label for="one">1</label>
+          <input type="radio" name="user" id="one" onclick="selected(this.value)" value="1">
+        </div>
+        <div>
+          <label for="two">2</label>
+          <input type="radio" name="user" id="two" onclick="selected(this.value)" value="2">
+        </div>
+        <div>
+          <label for="three">3</label>
+          <input type="radio" name="user" id="three" onclick="selected(this.value)" value="3">
+        </div>
+        <div>
+          <label for="four">4</label>
+          <input type="radio" name="user" id="four" onclick="selected(this.value)" value="4">
+        </div>
+        <div>
+          <label for="five">5</label>
+          <input type="radio" name="user" id="five" onclick="selected(this.value)" value="5">
+        </div>
+        <div>
+          <label for="six">6</label>
+          <input type="radio" name="user" id="six" onclick="selected(this.value)" value="6">
+        </div>
+        <div>
+          <label for="seven">7</label>
+          <input type="radio" name="user" id="seven" onclick="selected(this.value)" value="7">
+        </div>
+        <div>
+          <label for="eight">8</label>
+          <input type="radio" name="user" id="eight" onclick="selected(this.value)" value="8">
+        </div>
+        <div>
+          <label for="nine">9</label>
+          <input type="radio" name="user" id="nine" onclick="selected(this.value)" value="9">
+        </div>
+        <div>
+          <label for="ten">10</label>
+          <input type="radio" name="user" id="ten" onclick="selected(this.value)" value="10">
+        </div>
+    </div><br />
+    <p>All or User Only</p>
     <ol id="todo-list">
-    </ol>
+    </ol><br />
+    <p>User Completed</p>
+    <ol id="completed-list">
+    </ol><br />
+    <p>User Uncompleted</p>
+    <ol id="uncompleted-list">
+    </ol><br />
 </body>
 </html>
